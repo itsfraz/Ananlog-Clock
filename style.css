@@ -1,0 +1,53 @@
+#clockcontainer{
+    position: relative;
+    margin: auto;
+    margin-top: 25px;
+    /* border: 2px solid red; */
+    background-color: red;
+    height: 60vh;
+    width: 60vh;
+    /* height: 500px;
+    width: 500px; */
+     background:url(clock.png) no-repeat;
+    background-size: 100%;
+    /* box-shadow: 10px 5px 100px; */
+    
+}
+#hour ,#minute,#second{
+    position: absolute;
+    background: black;
+    border-radius: 10px;
+    transform-origin: bottom;
+   /* we can decide here or we decide these element seperately in enery id . */
+}
+#hour{
+    /* background: blue;
+    position: absolute;
+    border-radius: 10px; */
+    width: 2%;
+    height: 23%;
+    top: 26%;
+    left: 48.8%;
+    opacity: 0.8;
+    /* display: none; */
+   
+}
+#minute{
+    /* background: red;
+    position: absolute;
+    border-radius: 10px; */
+    width: 1.5%;
+    height: 30%;
+    top: 20.5%;
+    left: 49.119%;
+    opacity: 0.8;
+    /* display: none; */
+}
+#second{
+    width: 1.3%;
+    height: 37.5%;
+    top: 12.5%;
+    left: 49.29%;
+    opacity: 0.8;
+    /* display: none; */
+}
