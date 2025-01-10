@@ -3,17 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analog Clockt</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Modern Analog Clock</title>
     <link rel="stylesheet" href="style.css">
-    <script src="index.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body>
-    <div id="clockcontainer">
-        <div id="hour"></div>
-        <div id="minute"></div>
-        <div id="second"></div>
+<body class="light-mode">
+    <div class="container">
+        <div class="mode-toggle">
+            <i class="fas fa-moon"></i>
+        </div>
+        
+        <div class="clock-container">
+            <div id="clockcontainer">
+                <div id="hour"></div>
+                <div id="minute"></div>
+                <div id="second"></div>
+            </div>
+            
+            <div class="digital-time">
+                <div class="time-format">
+                    <label class="switch">
+                        <input type="checkbox" id="format-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <span id="format-label">24-hour</span>
+                </div>
+                <div class="time">00:00:00</div>
+                <div class="date">January 1, 2024</div>
+                <div class="timezone">
+                    <select id="timezone-select">
+                        <option value="local">Local Time</option>
+                        <option value="UTC">UTC</option>
+                        <option value="EST">EST</option>
+                        <option value="PST">PST</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="alarm-section">
+                <h3>Alarm</h3>
+                <div class="alarm-controls">
+                    <input type="time" id="alarm-time">
+                    <button id="set-alarm">Set Alarm</button>
+                </div>
+                <div id="alarms-list"></div>
+            </div>
+
+            <div class="stopwatch-section">
+                <h3>Stopwatch</h3>
+                <div class="stopwatch-display">00:00:00</div>
+                <div class="stopwatch-controls">
+                    <button id="start-stopwatch">Start</button>
+                    <button id="pause-stopwatch">Pause</button>
+                    <button id="reset-stopwatch">Reset</button>
+                </div>
+                <div class="laps"></div>
+            </div>
+        </div>
     </div>
-    
+    <script src="index.js"></script>
 </body>
 </html>
