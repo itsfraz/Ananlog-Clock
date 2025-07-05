@@ -4,18 +4,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Modern Analog Clock</title>
+    <title>Enhanced Analog Clock</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="light-mode">
     <div class="container">
-        <div class="mode-toggle">
-            <i class="fas fa-moon"></i>
+        <div class="header">
+            <h1>Enhanced Clock</h1>
+            <div class="header-controls">
+                <div class="theme-selector">
+                    <select id="theme-select">
+                        <option value="default">Default Theme</option>
+                        <option value="dark">Dark Theme</option>
+                        <option value="light">Light Theme</option>
+                        <option value="blue">Blue Theme</option>
+                        <option value="green">Green Theme</option>
+                    </select>
+                </div>
+                <button id="enable-sound" class="sound-btn"><i class="fas fa-volume-up"></i> Enable Sounds</button>
+                <div class="mode-toggle">
+                    <i class="fas fa-moon"></i>
+                </div>
+            </div>
         </div>
         
         <div class="clock-container">
             <div id="clockcontainer">
+                <!-- Clock numbers -->
+                <div class="numbers">
+                    <span class="twelve">12</span>
+                    <span class="one">1</span>
+                    <span class="two">2</span>
+                    <span class="three">3</span>
+                    <span class="four">4</span>
+                    <span class="five">5</span>
+                    <span class="six">6</span>
+                    <span class="seven">7</span>
+                    <span class="eight">8</span>
+                    <span class="nine">9</span>
+                    <span class="ten">10</span>
+                    <span class="eleven">11</span>
+                </div>
+                <!-- Clock hands -->
                 <div id="hour"></div>
                 <div id="minute"></div>
                 <div id="second"></div>
@@ -35,8 +66,10 @@
                     <select id="timezone-select">
                         <option value="local">Local Time</option>
                         <option value="UTC">UTC</option>
-                        <option value="EST">EST</option>
-                        <option value="PST">PST</option>
+                        <option value="America/New_York">EST</option>
+                        <option value="America/Los_Angeles">PST</option>
+                        <option value="Europe/London">London</option>
+                        <option value="Asia/Tokyo">Tokyo</option>
                     </select>
                 </div>
             </div>
@@ -44,26 +77,71 @@
 
         <div class="features">
             <div class="alarm-section">
-                <h3>Alarm</h3>
+                <h3><i class="fas fa-bell"></i> Alarm</h3>
                 <div class="alarm-controls">
                     <input type="time" id="alarm-time">
-                    <button id="set-alarm">Set Alarm</button>
+                    <button id="set-alarm"><i class="fas fa-plus"></i> Set Alarm</button>
+                </div>
+                <div class="alarm-options">
+                    <label>
+                        <input type="checkbox" id="alarm-repeat"> Repeat Daily
+                    </label>
+                    <select id="alarm-sound">
+                        <option value="beep">Beep</option>
+                        <option value="chime">Chime</option>
+                        <option value="digital">Digital</option>
+                    </select>
                 </div>
                 <div id="alarms-list"></div>
             </div>
 
             <div class="stopwatch-section">
-                <h3>Stopwatch</h3>
-                <div class="stopwatch-display">00:00:00</div>
+                <h3><i class="fas fa-stopwatch"></i> Stopwatch</h3>
+                <div class="stopwatch-display">00:00:00.000</div>
                 <div class="stopwatch-controls">
-                    <button id="start-stopwatch">Start</button>
-                    <button id="pause-stopwatch">Pause</button>
-                    <button id="reset-stopwatch">Reset</button>
+                    <button id="start-stopwatch"><i class="fas fa-play"></i> Start</button>
+                    <button id="pause-stopwatch"><i class="fas fa-pause"></i> Pause</button>
+                    <button id="lap-stopwatch"><i class="fas fa-flag"></i> Lap</button>
+                    <button id="reset-stopwatch"><i class="fas fa-redo"></i> Reset</button>
+                </div>
+                <div class="laps-header">
+                    <span>Laps</span>
+                    <span>Time</span>
                 </div>
                 <div class="laps"></div>
             </div>
+
+            <div class="timer-section">
+                <h3><i class="fas fa-hourglass-half"></i> Timer</h3>
+                <div class="timer-display">00:00:00</div>
+                <div class="timer-input">
+                    <input type="number" id="hours" min="0" max="23" placeholder="HH">
+                    <span>:</span>
+                    <input type="number" id="minutes" min="0" max="59" placeholder="MM">
+                    <span>:</span>
+                    <input type="number" id="seconds" min="0" max="59" placeholder="SS">
+                </div>
+                <div class="timer-controls">
+                    <button id="start-timer"><i class="fas fa-play"></i> Start</button>
+                    <button id="pause-timer"><i class="fas fa-pause"></i> Pause</button>
+                    <button id="reset-timer"><i class="fas fa-redo"></i> Reset</button>
+                </div>
+                <div class="timer-options">
+                    <select id="timer-sound">
+                        <option value="beep">Beep</option>
+                        <option value="chime">Chime</option>
+                        <option value="digital">Digital</option>
+                    </select>
+                </div>
+            </div>
         </div>
     </div>
+
+    <!-- Audio elements (hidden) -->
+    <audio id="alarm-sound-beep" src="https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3" preload="auto"></audio>
+    <audio id="alarm-sound-chime" src="https://assets.mixkit.co/sfx/preview/mixkit-morning-clock-alarm-1003.mp3" preload="auto"></audio>
+    <audio id="alarm-sound-digital" src="https://assets.mixkit.co/sfx/preview/mixkit-digital-clock-digital-alarm-buzzer-992.mp3" preload="auto"></audio>
+    
     <script src="index.js"></script>
 </body>
 </html>

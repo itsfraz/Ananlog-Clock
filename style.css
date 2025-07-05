@@ -14,12 +14,50 @@
     --shadow-color: rgba(0, 0, 0, 0.1);
 }
 
+/* Theme Definitions */
+.default-mode {
+    --primary-bg: #f0f2f5;
+    --secondary-bg: #ffffff;
+    --primary-text: #1a1a1a;
+    --secondary-text: #666666;
+    --accent-color: #007bff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
 .dark-mode {
     --primary-bg: #1a1a1a;
     --secondary-bg: #2d2d2d;
     --primary-text: #ffffff;
     --secondary-text: #cccccc;
+    --accent-color: #4dabf7;
     --shadow-color: rgba(255, 255, 255, 0.1);
+}
+
+.light-mode {
+    --primary-bg: #f8f9fa;
+    --secondary-bg: #ffffff;
+    --primary-text: #212529;
+    --secondary-text: #495057;
+    --accent-color: #228be6;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+.blue-mode {
+    --primary-bg: #e7f5ff;
+    --secondary-bg: #d0ebff;
+    --primary-text: #1c7ed6;
+    --secondary-text: #339af0;
+    --accent-color: #1971c2;
+    --shadow-color: rgba(30, 120, 200, 0.1);
+}
+
+.green-mode {
+    --primary-bg: #ebfbee;
+    --secondary-bg: #d3f9d8;
+    --primary-text: #2b8a3e;
+    --secondary-text: #40c057;
+    --accent-color: #2f9e44;
+    --shadow-color: rgba(40, 180, 70, 0.1);
 }
 
 body {
@@ -33,6 +71,36 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+}
+
+/* Header Styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--secondary-text);
+}
+
+.header h1 {
+    color: var(--accent-color);
+    font-size: 1.8em;
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.theme-selector select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid var(--secondary-text);
+    background: var(--secondary-bg);
+    color: var(--primary-text);
+    cursor: pointer;
 }
 
 .mode-toggle {
@@ -49,6 +117,7 @@ body {
     transform: scale(1.1);
 }
 
+/* Clock Styles */
 .clock-container {
     display: flex;
     flex-direction: column;
@@ -116,6 +185,76 @@ body {
     background: var(--accent-color);
 }
 
+/* Clock Numbers */
+/* Clock Numbers */
+.numbers {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-weight: 600;
+    font-size: 1.2em;
+    color: var(--primary-text);
+}
+
+.numbers span {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    transform: translate(-50%, -50%);
+}
+
+.twelve { 
+    top: 1%; 
+    left: 45%;
+}
+.one { 
+    top: 9%; 
+    right: 24%;
+}
+.two { 
+    top: 25%; 
+    right: 10%;
+}
+.three { 
+    top: 45%; 
+    right: 5%;
+}
+.four { 
+    bottom: 28%; 
+    right: 13%;
+}
+.five { 
+    bottom: 13%; 
+    right: 25%;
+}
+.six { 
+    bottom: 5%; 
+    left: 47%;
+}
+.seven { 
+    bottom: 9%; 
+    left: 25%;
+}
+.eight { 
+    bottom: 25%; 
+    left: 13%;
+}
+.nine { 
+    top:46%; 
+    left: 4%;
+}
+.ten { 
+    top: 25%; 
+    left: 6%;
+}
+.eleven { 
+    top: 10%; 
+    left: 23%;
+}
+
+/* Digital Time */
 .digital-time {
     text-align: center;
     background: var(--secondary-bg);
@@ -146,110 +285,7 @@ body {
     cursor: pointer;
 }
 
-.features {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 40px;
-    flex-wrap: wrap;
-}
-
-.alarm-section, .stopwatch-section {
-    background: var(--secondary-bg);
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px var(--shadow-color);
-    min-width: 300px;
-}
-
-h3 {
-    margin-bottom: 15px;
-    color: var(--accent-color);
-}
-
-.alarm-controls, .stopwatch-controls {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
-input[type="time"] {
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid var(--secondary-text);
-    background: var(--secondary-bg);
-    color: var(--primary-text);
-}
-
-button {
-    padding: 8px 15px;
-    border: none;
-    border-radius: 5px;
-    background: var(--accent-color);
-    color: white;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-}
-
-button:hover {
-    transform: translateY(-2px);
-    opacity: 0.9;
-}
-
-.stopwatch-display {
-    font-size: 2em;
-    font-weight: bold;
-    text-align: center;
-    margin: 15px 0;
-    color: var(--accent-color);
-    letter-spacing: 0.05em; /* Add this line to improve readability */
-}
-
-.laps {
-    max-height: 150px;
-    overflow-y: auto;
-    margin-top: 15px;
-}
-
-/* Remove Clock Numbers Styles */
-// .numbers {
-//     position: absolute;
-//     width: 100%;
-//     height: 100%;
-//     padding: 20px;
-//     font-weight: 600;
-//     font-size: 1.2em;
-//     color: var(--primary-text);
-// }
-
-// .numbers > div {
-//     position: absolute;
-//     width: 30px;
-//     height: 30px;
-//     text-align: center;
-//     transform-origin: 50% 50%;
-// }
-
-// .twelve { 
-//     top: 2%; 
-//     left: calc(48% - 15px); 
-// }
-// .one { top: 10%; right: 20%; }
-// .two { top: 25%; right: 10%; }
-// .three { top: calc(50% - 15px); right: 5%; }
-// .four { bottom: 25%; right: 10%; }
-// .five { bottom: 10%; right: 20%; }
-// .six { bottom: 5%; left: calc(50% - 15px); }
-// .seven { bottom: 10%; left: 20%; }
-// .eight { bottom: 25%; left: 10%; }
-// .nine { 
-//     top: calc(50% - 15px); 
-//     left: 2%; 
-// }
-// .ten { top: 25%; left: 10%; }
-// .eleven { top: 10%; left: 20%; }
-
-/* Time Format Toggle Switch */
+/* Time Format Toggle */
 .time-format {
     display: flex;
     align-items: center;
@@ -314,6 +350,268 @@ input:checked + .slider:before {
     font-size: 0.9em;
 }
 
+/* Features Section */
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.alarm-section, .stopwatch-section, .timer-section {
+    background: var(--secondary-bg);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    min-width: 300px;
+}
+
+h3 {
+    margin-bottom: 15px;
+    color: var(--accent-color);
+}
+
+/* Alarm Styles */
+.alarm-controls, .stopwatch-controls, .timer-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+input[type="time"], input[type="number"] {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid var(--secondary-text);
+    background: var(--secondary-bg);
+    color: var(--primary-text);
+}
+
+button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    background: var(--accent-color);
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+/* Alarm Item Styles */
+.alarm-item {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    margin: 5px 0;
+    background: var(--primary-bg);
+    border-radius: 8px;
+}
+
+.alarm-time {
+    font-weight: bold;
+}
+
+.alarm-time.disabled {
+    opacity: 0.6;
+    text-decoration: line-through;
+}
+
+.alarm-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.alarm-actions button {
+    padding: 5px;
+    min-width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.alarm-sound, .alarm-repeat {
+    font-size: 0.8em;
+    color: var(--secondary-text);
+}
+
+.alarm-options {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    align-items: center;
+}
+
+.alarm-options label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9em;
+}
+
+/* Stopwatch Styles */
+.stopwatch-display {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    margin: 15px 0;
+    color: var(--accent-color);
+    letter-spacing: 0.05em;
+}
+
+.laps {
+    max-height: 150px;
+    overflow-y: auto;
+    margin-top: 15px;
+}
+
+.laps-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    font-weight: bold;
+    border-bottom: 1px solid var(--secondary-text);
+    margin-bottom: 5px;
+}
+
+.lap-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    margin: 3px 0;
+    background: var(--primary-bg);
+    border-radius: 5px;
+}
+
+.lap-item.fastest {
+    color: #2b8a3e;
+}
+
+.lap-item.slowest {
+    color: #c92a2a;
+}
+
+/* Timer Styles */
+.timer-display {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    margin: 15px 0;
+    color: var(--accent-color);
+}
+
+.timer-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin: 15px 0;
+}
+
+.timer-input input {
+    width: 60px;
+    padding: 8px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid var(--secondary-text);
+    background: var(--secondary-bg);
+    color: var(--primary-text);
+    font-size: 1.1em;
+}
+
+.timer-input span {
+    font-size: 1.5em;
+    color: var(--secondary-text);
+}
+
+.timer-display.highlight {
+    animation: pulse 0.5s infinite alternate;
+}
+
+@keyframes pulse {
+    from { opacity: 1; }
+    to { opacity: 0.5; }
+}
+
+/* Modal Styles */
+.alarm-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.alarm-modal-content {
+    background: var(--secondary-bg);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.alarm-modal h3 {
+    color: var(--accent-color);
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+
+.alarm-modal p {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+.alarm-modal-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.alarm-modal-buttons button {
+    padding: 10px 15px;
+    font-size: 1em;
+}
+
+/* Notification Styles */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 5px;
+    color: white;
+    z-index: 1000;
+    transform: translateX(0);
+    transition: all 0.3s ease;
+}
+
+.notification.success {
+    background: #2b8a3e;
+}
+
+.notification.error {
+    background: #c92a2a;
+}
+
+.notification.fade-out {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .container {
@@ -325,15 +623,26 @@ input:checked + .slider:before {
         width: 300px;
     }
     
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .header-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
     .features {
         flex-direction: column;
         align-items: center;
     }
 
-    .weather-section,
-    .digital-time,
     .alarm-section,
-    .stopwatch-section {
+    .stopwatch-section,
+    .timer-section,
+    .digital-time {
         min-width: 280px;
         width: 100%;
         margin: 10px 0;
@@ -346,6 +655,16 @@ input:checked + .slider:before {
     .mode-toggle {
         top: 10px;
         right: 10px;
+    }
+    
+    .alarm-item {
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto;
+    }
+    
+    .alarm-sound, .alarm-repeat {
+        grid-column: span 2;
+        font-size: 0.7em;
     }
 }
 
@@ -363,18 +682,18 @@ input:checked + .slider:before {
         font-size: 1em;
     }
 
-    .weather-header {
-        flex-direction: column;
+    .timer-input input {
+        width: 50px;
+        font-size: 1em;
     }
-
-    .weather-details {
-        flex-direction: column;
-        gap: 5px;
+    
+    .stopwatch-controls, .timer-controls {
+        flex-wrap: wrap;
     }
-
-    .weather-main {
-        flex-direction: column;
-        gap: 5px;
+    
+    .stopwatch-controls button, .timer-controls button {
+        flex: 1 0 40%;
+        margin: 5px;
     }
 }
 
