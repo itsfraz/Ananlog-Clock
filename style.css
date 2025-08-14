@@ -1,709 +1,1072 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-}
-
-:root {
-    --primary-bg: #f0f2f5;
-    --secondary-bg: #ffffff;
-    --primary-text: #1a1a1a;
-    --secondary-text: #666666;
-    --accent-color: #007bff;
-    --shadow-color: rgba(0, 0, 0, 0.1);
-}
-
-/* Theme Definitions */
-.default-mode {
-    --primary-bg: #f0f2f5;
-    --secondary-bg: #ffffff;
-    --primary-text: #1a1a1a;
-    --secondary-text: #666666;
-    --accent-color: #007bff;
-    --shadow-color: rgba(0, 0, 0, 0.1);
-}
-
-.dark-mode {
-    --primary-bg: #1a1a1a;
-    --secondary-bg: #2d2d2d;
-    --primary-text: #ffffff;
-    --secondary-text: #cccccc;
-    --accent-color: #4dabf7;
-    --shadow-color: rgba(255, 255, 255, 0.1);
-}
-
-.light-mode {
-    --primary-bg: #f8f9fa;
-    --secondary-bg: #ffffff;
-    --primary-text: #212529;
-    --secondary-text: #495057;
-    --accent-color: #228be6;
-    --shadow-color: rgba(0, 0, 0, 0.1);
-}
-
-.blue-mode {
-    --primary-bg: #e7f5ff;
-    --secondary-bg: #d0ebff;
-    --primary-text: #1c7ed6;
-    --secondary-text: #339af0;
-    --accent-color: #1971c2;
-    --shadow-color: rgba(30, 120, 200, 0.1);
-}
-
-.green-mode {
-    --primary-bg: #ebfbee;
-    --secondary-bg: #d3f9d8;
-    --primary-text: #2b8a3e;
-    --secondary-text: #40c057;
-    --accent-color: #2f9e44;
-    --shadow-color: rgba(40, 180, 70, 0.1);
-}
-
-body {
-    background: var(--primary-bg);
-    color: var(--primary-text);
-    min-height: 100vh;
-    transition: all 0.3s ease;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* Header Styles */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--secondary-text);
-}
-
-.header h1 {
-    color: var(--accent-color);
-    font-size: 1.8em;
-}
-
-.header-controls {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.theme-selector select {
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid var(--secondary-text);
-    background: var(--secondary-bg);
-    color: var(--primary-text);
-    cursor: pointer;
-}
-
-.mode-toggle {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    cursor: pointer;
-    font-size: 24px;
-    color: var(--primary-text);
-    transition: transform 0.3s ease;
-}
-
-.mode-toggle:hover {
-    transform: scale(1.1);
-}
-
-/* Clock Styles */
-.clock-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    margin-top: 40px;
-}
-
-#clockcontainer {
-    position: relative;
-    margin: auto;
-    height: 400px;
-    width: 400px;
-    background: var(--secondary-bg);
-    border-radius: 50%;
-    padding: 20px;
-    box-shadow: 0 10px 30px var(--shadow-color),
-                inset 0 0 30px var(--shadow-color);
-}
-
-#clockcontainer::before {
-    content: '';
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    background: var(--accent-color);
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 999;
-}
-
-#hour, #minute, #second {
-    position: absolute;
-    background: var(--primary-text);
-    border-radius: 10px;
-    transform-origin: bottom;
-    transition: transform 0.1s cubic-bezier(0.4, 2.08, 0.55, 0.44);
-    z-index: 1;
-}
-
-#hour {
-    width: 2%;
-    height: 25%;
-    top: 25%;
-    left: 49%;
-    opacity: 0.8;
-}
-
-#minute {
-    width: 1.5%;
-    height: 30%;
-    top: 20%;
-    left: 49.25%;
-    opacity: 0.8;
-}
-
-#second {
-    width: 1%;
-    height: 35%;
-    top: 15%;
-    left: 49.5%;
-    opacity: 0.8;
-    background: var(--accent-color);
-}
-
-/* Clock Numbers */
-/* Clock Numbers */
-.numbers {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    font-weight: 600;
-    font-size: 1.2em;
-    color: var(--primary-text);
-}
-
-.numbers span {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    line-height: 30px;
-    transform: translate(-50%, -50%);
-}
-
-.twelve { 
-    top: 1%; 
-    left: 45%;
-}
-.one { 
-    top: 9%; 
-    right: 24%;
-}
-.two { 
-    top: 25%; 
-    right: 10%;
-}
-.three { 
-    top: 45%; 
-    right: 5%;
-}
-.four { 
-    bottom: 28%; 
-    right: 13%;
-}
-.five { 
-    bottom: 13%; 
-    right: 25%;
-}
-.six { 
-    bottom: 5%; 
-    left: 47%;
-}
-.seven { 
-    bottom: 9%; 
-    left: 25%;
-}
-.eight { 
-    bottom: 25%; 
-    left: 13%;
-}
-.nine { 
-    top:46%; 
-    left: 4%;
-}
-.ten { 
-    top: 25%; 
-    left: 6%;
-}
-.eleven { 
-    top: 10%; 
-    left: 23%;
-}
-
-/* Digital Time */
-.digital-time {
-    text-align: center;
-    background: var(--secondary-bg);
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px var(--shadow-color);
-    min-width: 300px;
-}
-
-.time {
-    font-size: 2.5em;
-    font-weight: bold;
-    color: var(--accent-color);
-}
-
-.date {
-    font-size: 1.2em;
-    color: var(--secondary-text);
-    margin: 10px 0;
-}
-
-.timezone select {
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid var(--secondary-text);
-    background: var(--secondary-bg);
-    color: var(--primary-text);
-    cursor: pointer;
-}
-
-/* Time Format Toggle */
-.time-format {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 50px;
-    height: 24px;
-}
-
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--secondary-text);
-    transition: .4s;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 16px;
-    width: 16px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-}
-
-input:checked + .slider {
-    background-color: var(--accent-color);
-}
-
-input:checked + .slider:before {
-    transform: translateX(26px);
-}
-
-.slider.round {
-    border-radius: 34px;
-}
-
-.slider.round:before {
-    border-radius: 50%;
-}
-
-#format-label {
-    color: var(--primary-text);
-    font-size: 0.9em;
-}
-
-/* Features Section */
-.features {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 40px;
-    flex-wrap: wrap;
-}
-
-.alarm-section, .stopwatch-section, .timer-section {
-    background: var(--secondary-bg);
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px var(--shadow-color);
-    min-width: 300px;
-}
-
-h3 {
-    margin-bottom: 15px;
-    color: var(--accent-color);
-}
-
-/* Alarm Styles */
-.alarm-controls, .stopwatch-controls, .timer-controls {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
-input[type="time"], input[type="number"] {
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid var(--secondary-text);
-    background: var(--secondary-bg);
-    color: var(--primary-text);
-}
-
-button {
-    padding: 8px 15px;
-    border: none;
-    border-radius: 5px;
-    background: var(--accent-color);
-    color: white;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-}
-
-button:hover {
-    transform: translateY(-2px);
-    opacity: 0.9;
-}
-
-/* Alarm Item Styles */
-.alarm-item {
-    display: grid;
-    grid-template-columns: 1fr auto auto auto;
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
-    margin: 5px 0;
-    background: var(--primary-bg);
-    border-radius: 8px;
-}
-
-.alarm-time {
-    font-weight: bold;
-}
-
-.alarm-time.disabled {
-    opacity: 0.6;
-    text-decoration: line-through;
-}
-
-.alarm-actions {
-    display: flex;
-    gap: 5px;
-}
-
-.alarm-actions button {
-    padding: 5px;
-    min-width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.alarm-sound, .alarm-repeat {
-    font-size: 0.8em;
-    color: var(--secondary-text);
-}
-
-.alarm-options {
-    display: flex;
-    justify-content: space-between;
-    margin: 10px 0;
-    align-items: center;
-}
-
-.alarm-options label {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 0.9em;
-}
-
-/* Stopwatch Styles */
-.stopwatch-display {
-    font-size: 2em;
-    font-weight: bold;
-    text-align: center;
-    margin: 15px 0;
-    color: var(--accent-color);
-    letter-spacing: 0.05em;
-}
-
-.laps {
-    max-height: 150px;
-    overflow-y: auto;
-    margin-top: 15px;
-}
-
-.laps-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 10px;
-    font-weight: bold;
-    border-bottom: 1px solid var(--secondary-text);
-    margin-bottom: 5px;
-}
-
-.lap-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 10px;
-    margin: 3px 0;
-    background: var(--primary-bg);
-    border-radius: 5px;
-}
-
-.lap-item.fastest {
-    color: #2b8a3e;
-}
-
-.lap-item.slowest {
-    color: #c92a2a;
-}
-
-/* Timer Styles */
-.timer-display {
-    font-size: 2em;
-    font-weight: bold;
-    text-align: center;
-    margin: 15px 0;
-    color: var(--accent-color);
-}
-
-.timer-input {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    margin: 15px 0;
-}
-
-.timer-input input {
-    width: 60px;
-    padding: 8px;
-    text-align: center;
-    border-radius: 5px;
-    border: 1px solid var(--secondary-text);
-    background: var(--secondary-bg);
-    color: var(--primary-text);
-    font-size: 1.1em;
-}
-
-.timer-input span {
-    font-size: 1.5em;
-    color: var(--secondary-text);
-}
-
-.timer-display.highlight {
-    animation: pulse 0.5s infinite alternate;
-}
-
-@keyframes pulse {
-    from { opacity: 1; }
-    to { opacity: 0.5; }
-}
-
-/* Modal Styles */
-.alarm-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-}
-
-.alarm-modal-content {
-    background: var(--secondary-bg);
-    padding: 30px;
-    border-radius: 15px;
-    text-align: center;
-    max-width: 400px;
-    width: 90%;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-.alarm-modal h3 {
-    color: var(--accent-color);
-    margin-bottom: 10px;
-    font-size: 1.5em;
-}
-
-.alarm-modal p {
-    margin-bottom: 20px;
-    font-size: 1.2em;
-}
-
-.alarm-modal-buttons {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-}
-
-.alarm-modal-buttons button {
-    padding: 10px 15px;
-    font-size: 1em;
-}
-
-/* Notification Styles */
-.notification {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 15px 20px;
-    border-radius: 5px;
-    color: white;
-    z-index: 1000;
-    transform: translateX(0);
-    transition: all 0.3s ease;
-}
-
-.notification.success {
-    background: #2b8a3e;
-}
-
-.notification.error {
-    background: #c92a2a;
-}
-
-.notification.fade-out {
-    transform: translateX(100%);
-    opacity: 0;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .container {
-        padding: 10px;
-    }
-
-    #clockcontainer {
-        height: 300px;
-        width: 300px;
-    }
-    
-    .header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-    
-    .header-controls {
-        width: 100%;
-        justify-content: space-between;
-    }
-    
-    .features {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .alarm-section,
-    .stopwatch-section,
-    .timer-section,
-    .digital-time {
-        min-width: 280px;
-        width: 100%;
-        margin: 10px 0;
-    }
-
-    .numbers {
-        font-size: 1em;
-    }
-
-    .mode-toggle {
-        top: 10px;
-        right: 10px;
-    }
-    
-    .alarm-item {
-        grid-template-columns: 1fr auto;
-        grid-template-rows: auto auto;
-    }
-    
-    .alarm-sound, .alarm-repeat {
-        grid-column: span 2;
-        font-size: 0.7em;
-    }
-}
-
-@media (max-width: 480px) {
-    #clockcontainer {
-        height: 250px;
-        width: 250px;
-    }
-
-    .time {
-        font-size: 2em;
-    }
-
-    .date {
-        font-size: 1em;
-    }
-
-    .timer-input input {
-        width: 50px;
-        font-size: 1em;
-    }
-    
-    .stopwatch-controls, .timer-controls {
-        flex-wrap: wrap;
-    }
-    
-    .stopwatch-controls button, .timer-controls button {
-        flex: 1 0 40%;
-        margin: 5px;
-    }
-}
-
-@media (max-width: 320px) {
-    #clockcontainer {
-        height: 200px;
-        width: 200px;
-    }
-
-    .numbers {
-        font-size: 0.8em;
-    }
-}
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-bg: #f0f2f5;
+            --secondary-bg: #ffffff;
+            --primary-text: #1a1a1a;
+            --secondary-text: #666666;
+            --accent-color: #007bff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --info: #17a2b8;
+        }
+
+        /* Theme Definitions */
+        .default-mode {
+            --primary-bg: #f0f2f5;
+            --secondary-bg: #ffffff;
+            --primary-text: #1a1a1a;
+            --secondary-text: #666666;
+            --accent-color: #007bff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode {
+            --primary-bg: #121212;
+            --secondary-bg: #1e1e1e;
+            --primary-text: #ffffff;
+            --secondary-text: #aaaaaa;
+            --accent-color: #4dabf7;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .light-mode {
+            --primary-bg: #f8f9fa;
+            --secondary-bg: #ffffff;
+            --primary-text: #212529;
+            --secondary-text: #495057;
+            --accent-color: #228be6;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .blue-mode {
+            --primary-bg: #e7f5ff;
+            --secondary-bg: #d0ebff;
+            --primary-text: #1c7ed6;
+            --secondary-text: #339af0;
+            --accent-color: #1971c2;
+            --shadow-color: rgba(30, 120, 200, 0.1);
+        }
+
+        .green-mode {
+            --primary-bg: #ebfbee;
+            --secondary-bg: #d3f9d8;
+            --primary-text: #2b8a3e;
+            --secondary-text: #40c057;
+            --accent-color: #2f9e44;
+            --shadow-color: rgba(40, 180, 70, 0.1);
+        }
+
+        body {
+            background: var(--primary-bg);
+            color: var(--primary-text);
+            min-height: 100vh;
+            transition: all 0.3s ease;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--accent-color);
+            position: relative;
+        }
+
+        .header h1 {
+            color: var(--accent-color);
+            font-size: 2.2rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .theme-selector select, .timezone select {
+            padding: 10px 15px;
+            border-radius: 30px;
+            border: 2px solid var(--accent-color);
+            background: var(--secondary-bg);
+            color: var(--primary-text);
+            cursor: pointer;
+            font-weight: 500;
+            box-shadow: 0 2px 5px var(--shadow-color);
+            transition: all 0.3s ease;
+        }
+
+        .theme-selector select:hover, .timezone select:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px var(--shadow-color);
+        }
+
+        .mode-toggle {
+            cursor: pointer;
+            font-size: 26px;
+            color: var(--primary-text);
+            transition: transform 0.3s ease;
+            background: var(--secondary-bg);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px var(--shadow-color);
+        }
+
+        .mode-toggle:hover {
+            transform: scale(1.1) rotate(15deg);
+        }
+
+        /* Clock Styles */
+        .clock-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .analog-clock-wrapper {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #clockcontainer {
+            position: relative;
+            height: 350px;
+            width: 350px;
+            background: var(--secondary-bg);
+            border-radius: 50%;
+            padding: 20px;
+            box-shadow: 0 15px 30px var(--shadow-color),
+                        inset 0 0 30px var(--shadow-color);
+            margin-bottom: 20px;
+            border: 8px solid var(--accent-color);
+            transition: all 0.3s ease;
+        }
+
+        #clockcontainer:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px var(--shadow-color),
+                        inset 0 0 40px var(--shadow-color);
+        }
+
+        #clockcontainer::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 999;
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        #hour, #minute, #second {
+            position: absolute;
+            background: var(--primary-text);
+            border-radius: 10px;
+            transform-origin: bottom;
+            transition: transform 0.1s cubic-bezier(0.4, 2.08, 0.55, 0.44);
+            z-index: 1;
+        }
+
+        #hour {
+            width: 6px;
+            height: 30%;
+            top: 20%;
+            left: 48.5%;
+            opacity: 0.9;
+        }
+
+        #minute {
+            width: 4px;
+            height: 40%;
+            top: 10%;
+            left: 49%;
+            opacity: 0.8;
+        }
+
+        #second {
+            width: 2px;
+            height: 45%;
+            top: 5%;
+            left: 49.5%;
+            opacity: 0.9;
+            background: var(--accent-color);
+        }
+
+        /* Clock Numbers */
+        .numbers {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--primary-text);
+        }
+
+        .numbers span {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            transform: translate(-50%, -50%);
+        }
+
+        .twelve { top: 1%; left: 45%; }
+        .one { top: 9%; right: 24%; }
+        .two { top: 25%; right: 10%; }
+        .three { top: 45%; right: 5%; }
+        .four { bottom: 28%; right: 13%; }
+        .five { bottom: 13%; right: 25%; }
+        .six { bottom: 5%; left: 47%; }
+        .seven { bottom: 9%; left: 25%; }
+        .eight { bottom: 25%; left: 13%; }
+        .nine { top:46%; left: 4%; }
+        .ten { top: 25%; left: 6%; }
+        .eleven { top: 10%; left: 23%; }
+
+        /* Digital Time */
+        .digital-time {
+            text-align: center;
+            background: var(--secondary-bg);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px var(--shadow-color);
+            min-width: 300px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--accent-color);
+            transition: all 0.3s ease;
+        }
+
+        .digital-time:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px var(--shadow-color);
+        }
+
+        .time {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            margin: 15px 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .date {
+            font-size: 1.4rem;
+            color: var(--secondary-text);
+            margin: 15px 0;
+            font-weight: 500;
+        }
+
+        .timezone select {
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        /* Time Format Toggle */
+        .time-format {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--secondary-text);
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--accent-color);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(30px);
+        }
+
+        #format-label {
+            color: var(--primary-text);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .alarm-section, .stopwatch-section, .timer-section {
+            background: var(--secondary-bg);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px var(--shadow-color);
+            border: 2px solid var(--accent-color);
+            transition: all 0.3s ease;
+        }
+
+        .alarm-section:hover, .stopwatch-section:hover, .timer-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px var(--shadow-color);
+        }
+
+        h3 {
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h3 i {
+            font-size: 1.3rem;
+        }
+
+        /* Alarm Styles */
+        .alarm-controls, .stopwatch-controls, .timer-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        input[type="time"], input[type="number"] {
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 2px solid var(--accent-color);
+            background: var(--secondary-bg);
+            color: var(--primary-text);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input[type="time"]:focus, input[type="number"]:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            background: var(--accent-color);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 6px var(--shadow-color);
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 10px var(--shadow-color);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        button.secondary {
+            background: var(--secondary-text);
+        }
+
+        button.danger {
+            background: var(--danger);
+        }
+
+        button.success {
+            background: var(--success);
+        }
+
+        /* Alarm Item Styles */
+        .alarm-item {
+            display: grid;
+            grid-template-columns: 1fr auto auto auto;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            margin: 10px 0;
+            background: var(--primary-bg);
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-color);
+            transition: all 0.3s ease;
+        }
+
+        .alarm-item:hover {
+            transform: translateX(5px);
+        }
+
+        .alarm-time {
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .alarm-time.disabled {
+            opacity: 0.6;
+            text-decoration: line-through;
+        }
+
+        .alarm-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .alarm-actions button {
+            padding: 8px;
+            min-width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .alarm-sound, .alarm-repeat {
+            font-size: 0.9rem;
+            color: var(--secondary-text);
+        }
+
+        .alarm-options {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .alarm-options label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* Stopwatch Styles */
+        .stopwatch-display {
+            font-size: 2.8rem;
+            font-weight: 800;
+            text-align: center;
+            margin: 20px 0;
+            color: var(--accent-color);
+            letter-spacing: 0.05em;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .laps {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 20px;
+            padding-right: 10px;
+        }
+
+        .laps::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .laps::-webkit-scrollbar-track {
+            background: var(--primary-bg);
+            border-radius: 10px;
+        }
+
+        .laps::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 10px;
+        }
+
+        .laps-header {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 15px;
+            font-weight: 700;
+            border-bottom: 2px solid var(--secondary-text);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .lap-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 15px;
+            margin: 5px 0;
+            background: var(--primary-bg);
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .lap-item:hover {
+            background: rgba(0, 123, 255, 0.1);
+        }
+
+        .lap-item.fastest {
+            color: var(--success);
+            border-left: 3px solid var(--success);
+        }
+
+        .lap-item.slowest {
+            color: var(--danger);
+            border-left: 3px solid var(--danger);
+        }
+
+        /* Timer Styles */
+        .timer-display {
+            font-size: 2.8rem;
+            font-weight: 800;
+            text-align: center;
+            margin: 20px 0;
+            color: var(--accent-color);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .timer-input {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .timer-input input {
+            width: 80px;
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px;
+            border: 2px solid var(--accent-color);
+            background: var(--secondary-bg);
+            color: var(--primary-text);
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .timer-input span {
+            font-size: 1.8rem;
+            color: var(--secondary-text);
+            font-weight: 700;
+        }
+
+        .timer-display.highlight {
+            animation: pulse 0.5s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { opacity: 1; transform: scale(1); }
+            to { opacity: 0.7; transform: scale(1.05); }
+        }
+
+        /* Modal Styles */
+        .alarm-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .alarm-modal-content {
+            background: var(--secondary-bg);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 3px solid var(--accent-color);
+            animation: modalAppear 0.3s ease;
+        }
+
+        @keyframes modalAppear {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .alarm-modal h3 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 2rem;
+        }
+
+        .alarm-modal p {
+            margin-bottom: 25px;
+            font-size: 1.4rem;
+            color: var(--secondary-text);
+        }
+
+        .alarm-modal-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .alarm-modal-buttons button {
+            padding: 15px 25px;
+            font-size: 1.1rem;
+        }
+
+        /* Notification Styles */
+        .notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 20px 25px;
+            border-radius: 12px;
+            color: white;
+            z-index: 1000;
+            transform: translateX(0);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 500;
+            max-width: 350px;
+        }
+
+        .notification.success {
+            background: var(--success);
+        }
+
+        .notification.error {
+            background: var(--danger);
+        }
+
+        .notification.warning {
+            background: var(--warning);
+            color: #333;
+        }
+
+        .notification.info {
+            background: var(--info);
+        }
+
+        .notification.fade-out {
+            transform: translateX(120%);
+            opacity: 0;
+        }
+
+        .notification i {
+            font-size: 1.5rem;
+        }
+
+        /* Sound Button */
+        .sound-btn {
+            background: var(--success);
+            padding: 10px 20px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            box-shadow: 0 4px 6px var(--shadow-color);
+        }
+
+        .sound-btn:hover {
+            background: #218838;
+        }
+
+        /* Timezone Map Modal */
+        .timezone-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .timezone-modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .timezone-modal-content {
+            background: var(--secondary-bg);
+            border-radius: 20px;
+            width: 95%;
+            max-width: 1000px;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            animation: modalSlideIn 0.4s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .timezone-modal-header {
+            padding: 20px;
+            background: var(--accent-color);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .timezone-modal-header h2 {
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .close-timezone-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-timezone-modal:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .timezone-modal-body {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-container input {
+            flex: 1;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 2px solid var(--accent-color);
+            background: var(--secondary-bg);
+            color: var(--primary-text);
+            font-size: 1rem;
+        }
+
+        .search-container button {
+            padding: 12px 20px;
+        }
+
+        .map-container {
+            flex: 1;
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--accent-color);
+            background: #e0f7fa;
+        }
+
+        .world-map {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            background: #e0f7fa;
+        }
+
+        .timezone-marker {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.3);
+            z-index: 10;
+            animation: pulseMarker 2s infinite;
+        }
+
+        @keyframes pulseMarker {
+            0% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 123, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0); }
+        }
+
+        .timezone-marker::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .timezone-info {
+            margin-top: 20px;
+            padding: 15px;
+            background: var(--primary-bg);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .timezone-info h3 {
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
+
+        .timezone-info p {
+            margin: 5px 0;
+            font-size: 1.1rem;
+        }
+
+        .selected-timezone {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1100px) {
+            .clock-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .analog-clock-wrapper, .digital-time {
+                width: 100%;
+                max-width: 500px;
+            }
+            
+            #clockcontainer {
+                height: 300px;
+                width: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .header-controls {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .alarm-section,
+            .stopwatch-section,
+            .timer-section,
+            .digital-time {
+                min-width: 280px;
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            .numbers {
+                font-size: 1.2rem;
+            }
+
+            .mode-toggle {
+                top: 15px;
+                right: 15px;
+            }
+            
+            .alarm-item {
+                grid-template-columns: 1fr auto;
+                grid-template-rows: auto auto;
+            }
+            
+            .alarm-sound, .alarm-repeat {
+                grid-column: span 2;
+                font-size: 0.8rem;
+            }
+            
+            .time {
+                font-size: 2.5rem;
+            }
+            
+            .date {
+                font-size: 1.2rem;
+            }
+            
+            .timezone-modal-content {
+                width: 98%;
+                max-height: 95vh;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #clockcontainer {
+                height: 250px;
+                width: 250px;
+            }
+
+            .time {
+                font-size: 2rem;
+            }
+
+            .date {
+                font-size: 1.1rem;
+            }
+
+            .timer-input input {
+                width: 60px;
+                font-size: 1.1rem;
+                padding: 12px;
+            }
+            
+            .stopwatch-controls, .timer-controls {
+                flex-wrap: wrap;
+            }
+            
+            .stopwatch-controls button, .timer-controls button {
+                flex: 1 0 40%;
+                margin: 5px;
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+            
+            .alarm-modal-content {
+                padding: 25px;
+            }
+            
+            .alarm-modal h3 {
+                font-size: 1.6rem;
+            }
+            
+            .alarm-modal p {
+                font-size: 1.2rem;
+            }
+            
+            .alarm-modal-buttons {
+                flex-direction: column;
+            }
+            
+            .search-container {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 320px) {
+            #clockcontainer {
+                height: 200px;
+                width: 200px;
+            }
+
+            .numbers {
+                font-size: 1rem;
+            }
+            
+            .time {
+                font-size: 1.8rem;
+            }
+            
+            .timer-input input {
+                width: 50px;
+                font-size: 1rem;
+            }
+        }

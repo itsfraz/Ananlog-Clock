@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Enhanced Analog Clock</title>
+    <title>Enhanced Analog Clock with Timezone Map</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="light-mode">
     <div class="container">
         <div class="header">
-            <h1>Enhanced Clock</h1>
+            <h1><i class="fas fa-clock"></i> Enhanced Analog Clock</h1>
             <div class="header-controls">
                 <div class="theme-selector">
                     <select id="theme-select">
@@ -30,26 +30,28 @@
         </div>
         
         <div class="clock-container">
-            <div id="clockcontainer">
-                <!-- Clock numbers -->
-                <div class="numbers">
-                    <span class="twelve">12</span>
-                    <span class="one">1</span>
-                    <span class="two">2</span>
-                    <span class="three">3</span>
-                    <span class="four">4</span>
-                    <span class="five">5</span>
-                    <span class="six">6</span>
-                    <span class="seven">7</span>
-                    <span class="eight">8</span>
-                    <span class="nine">9</span>
-                    <span class="ten">10</span>
-                    <span class="eleven">11</span>
+            <div class="analog-clock-wrapper">
+                <div id="clockcontainer">
+                    <!-- Clock numbers -->
+                    <div class="numbers">
+                        <span class="twelve">12</span>
+                        <span class="one">1</span>
+                        <span class="two">2</span>
+                        <span class="three">3</span>
+                        <span class="four">4</span>
+                        <span class="five">5</span>
+                        <span class="six">6</span>
+                        <span class="seven">7</span>
+                        <span class="eight">8</span>
+                        <span class="nine">9</span>
+                        <span class="ten">10</span>
+                        <span class="eleven">11</span>
+                    </div>
+                    <!-- Clock hands -->
+                    <div id="hour"></div>
+                    <div id="minute"></div>
+                    <div id="second"></div>
                 </div>
-                <!-- Clock hands -->
-                <div id="hour"></div>
-                <div id="minute"></div>
-                <div id="second"></div>
             </div>
             
             <div class="digital-time">
@@ -100,9 +102,9 @@
                 <div class="stopwatch-display">00:00:00.000</div>
                 <div class="stopwatch-controls">
                     <button id="start-stopwatch"><i class="fas fa-play"></i> Start</button>
-                    <button id="pause-stopwatch"><i class="fas fa-pause"></i> Pause</button>
+                    <button id="pause-stopwatch" class="secondary"><i class="fas fa-pause"></i> Pause</button>
                     <button id="lap-stopwatch"><i class="fas fa-flag"></i> Lap</button>
-                    <button id="reset-stopwatch"><i class="fas fa-redo"></i> Reset</button>
+                    <button id="reset-stopwatch" class="danger"><i class="fas fa-redo"></i> Reset</button>
                 </div>
                 <div class="laps-header">
                     <span>Laps</span>
@@ -123,8 +125,8 @@
                 </div>
                 <div class="timer-controls">
                     <button id="start-timer"><i class="fas fa-play"></i> Start</button>
-                    <button id="pause-timer"><i class="fas fa-pause"></i> Pause</button>
-                    <button id="reset-timer"><i class="fas fa-redo"></i> Reset</button>
+                    <button id="pause-timer" class="secondary"><i class="fas fa-pause"></i> Pause</button>
+                    <button id="reset-timer" class="danger"><i class="fas fa-redo"></i> Reset</button>
                 </div>
                 <div class="timer-options">
                     <select id="timer-sound">
@@ -137,11 +139,41 @@
         </div>
     </div>
 
+    <!-- Timezone Map Modal -->
+    <div class="timezone-modal" id="timezone-modal">
+        <div class="timezone-modal-content">
+            <div class="timezone-modal-header">
+                <h2><i class="fas fa-globe-americas"></i> Select Timezone</h2>
+                <button class="close-timezone-modal">&times;</button>
+            </div>
+            <div class="timezone-modal-body">
+                <div class="search-container">
+                    <input type="text" id="city-search" placeholder="Search for a city...">
+                    <button id="search-city"><i class="fas fa-search"></i> Search</button>
+                </div>
+                <div class="map-container">
+                    <div class="world-map" id="world-map">
+                        <!-- SVG Map will be generated here -->
+                    </div>
+                </div>
+                <div class="timezone-info">
+                    <h3>Selected Timezone</h3>
+                    <p class="selected-timezone" id="selected-timezone">UTC</p>
+                    <p id="selected-time">00:00:00</p>
+                    <p id="selected-date">January 1, 2024</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Audio elements (hidden) -->
-    <audio id="alarm-sound-beep" src="https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3" preload="auto"></audio>
-    <audio id="alarm-sound-chime" src="https://assets.mixkit.co/sfx/preview/mixkit-morning-clock-alarm-1003.mp3" preload="auto"></audio>
-    <audio id="alarm-sound-digital" src="https://assets.mixkit.co/sfx/preview/mixkit-digital-clock-digital-alarm-buzzer-992.mp3" preload="auto"></audio>
-    
-    <script src="index.js"></script>
+    <audio id="alarm-sound-beep" preload="auto"></audio>
+    <audio id="alarm-sound-chime" preload="auto"></audio>
+    <audio id="alarm-sound-digital" preload="auto"></audio>
+    <audio id="timer-sound-beep" preload="auto"></audio>
+    <audio id="timer-sound-chime" preload="auto"></audio>
+    <audio id="timer-sound-digital" preload="auto"></audio>
+
+   <script src="index.js"></script>
 </body>
 </html>
